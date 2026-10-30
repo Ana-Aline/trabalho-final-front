@@ -1,18 +1,12 @@
 /// <reference types="cypress" />
 import { AuthPage } from '../support/pages/auth.page';
-import { newUser, staticUser } from '../support/data/userData';
-// import userData from '../fixtures/example.json'
-// import {
-//   getRandomNumber,
-//   getRandomEmail
-// } from '../support/helpers'
-1
-// import { faker } from '@faker-js/faker'
-
+import { ProductsPage } from '../support/pages/product.page';
+import { newUser, staticUser, searchData } from '../support/data/userData';
 
 describe('Automation Exercise', () => {
 
   const authPage = new AuthPage(); //instantiate once
+  const productsPage = new ProductsPage();
 
   it('CT 01: Register new user with success', () => {
     //Arrange
@@ -63,7 +57,7 @@ describe('Automation Exercise', () => {
     //Assert
     authPage.verifyLoggedOut();
   });
-  it.only('CT 05: Register new user with existing email', () => {
+  it('CT 05: Register new user with existing email', () => {
     //Arrange
     authPage.accessAuthPage();
 
@@ -73,5 +67,24 @@ describe('Automation Exercise', () => {
     //Assert
     authPage.verifyEmailAlreadyExistsError();
   });
+  it('CT 08: Verify All Products and product detail page', () => {
+    //Arrange
+    productsPage.accessProductsPage();
 
-})
+    //Act
+    productsPage.clickFirstProductView();
+    
+    //Assert
+    productsPage.verifyProductDetailsAreVisible();
+  });
+  it.only('CT 09: Search Product', () => {
+    //Arrange
+    productsPage.accessProductsPage();
+
+    //Act
+    productsPage.searchProduct(searchData.validProduct);
+    
+    //Assert
+    productsPage.verifySearchedProductsVisible();
+  });
+});

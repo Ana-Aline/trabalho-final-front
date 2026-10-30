@@ -16,5 +16,7 @@ const staticUser = {
   password: "12345",
   name: "Teste da Ana"
 };
-
-export { newUser, staticUser };
+const searchData = {
+    validProduct: "Top"
+};
+export { newUser, staticUser, searchData };
