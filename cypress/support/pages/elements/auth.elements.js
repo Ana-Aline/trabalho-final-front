@@ -28,4 +28,6 @@ export const AuthElements = {
   successAccountMessage: '[data-qa="account-created"]',
   continueButton: '[data-qa="continue-button"]',
 
+  loginErrorText: '.login-form > form > p',
+
 };

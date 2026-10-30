@@ -57,4 +57,9 @@ export class AuthPage {
   verifyLoggedInAs(username) {
     this.header.verifyLoggedInAs(username);
   }
+  verifyLoginError() {
+    cy.get(AuthElements.loginErrorText)
+      .should('be.visible')
+      .and('contain', MESSAGES.INCORRECT_CREDENTIALS);
+  }
 }

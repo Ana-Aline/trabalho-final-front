@@ -41,4 +41,18 @@ describe('Automation Exercise', () => {
 
   });
 
+  it.only('CT 03: Error when login User with incorrect email and password', () => {
+    //Arrange
+    authPage.accessAuthPage();
+    authPage.fillLogin(`qa_${Date.now()}@test.com`, 'senhaErrada123');
+
+    //Act
+    authPage.submitLogin();
+
+    //Assert
+    authPage.verifyLoginError();
+
+  });
+
+
 })
