@@ -2,8 +2,11 @@ export const AuthElements = {
   nameInput: '[data-qa="signup-name"]',
   emailInput: '[data-qa="signup-email"]',
   signupButton: '[data-qa="signup-button"]',
-  successAccountMessage: '[data-qa="account-created"]',
-  continueButton: '[data-qa="continue-button"]',
+
+  emailLoginInput: '[data-qa="login-email"]',
+  passwordLoginInput: '[data-qa="login-password"]',
+  loginButton: '[data-qa="login-button"]',
+
   mrSelect: '#id_gender',
   mrsSelect: '#id_gender2',
   passwordInput: '#password',
@@ -20,6 +23,9 @@ export const AuthElements = {
   cityInput: '#city',
   zipCodeInput: '#zipcode',
   mobileNumberInput: '#mobile_number',
-  createAccountButton: '[data-qa="create-account"]'
+  createAccountButton: '[data-qa="create-account"]',
+
+  successAccountMessage: '[data-qa="account-created"]',
+  continueButton: '[data-qa="continue-button"]',
 
 };

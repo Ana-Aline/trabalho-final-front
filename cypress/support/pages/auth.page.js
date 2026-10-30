@@ -2,18 +2,25 @@ import { newUser } from '../data/userData';
 import { AuthElements } from './elements/auth.elements';
 import { ROUTES } from '../data/routes';
 import { MESSAGES } from '../data/messages';
+import { HeaderComponent } from '../components/header.component';
 
 export class AuthPage {
+  
+  header = new HeaderComponent();
+
   accessAuthPage() {
     cy.visit(ROUTES.LOGIN)
   }
 
+  fillLogin(email, password){
+    cy.get(AuthElements.emailLoginInput).type(email);
+    cy.get(AuthElements.passwordLoginInput).type(password);
+  };
   fillInitialSignup(name, email) {
     cy.get(AuthElements.nameInput).type(name);
     cy.get(AuthElements.emailInput).type(email);
     cy.get(AuthElements.signupButton).click();
-  }
-
+  };
   fillAccountDetails() {
     cy.get(AuthElements.mrsSelect).click();
     cy.get(AuthElements.passwordInput).type(newUser.password);
@@ -33,19 +40,21 @@ export class AuthPage {
     cy.get(AuthElements.cityInput).type(newUser.city);
     cy.get(AuthElements.zipCodeInput).type(newUser.zipcode);
     cy.get(AuthElements.mobileNumberInput).type(newUser.mobileNumber);
-  }
+  };
 
+  submitLogin() {
+    cy.get(AuthElements.loginButton).click();
+  };
   submitAccountCreation() {
     cy.get(AuthElements.createAccountButton).click();
-  }
+  };
 
   verifyAccountCreated() {
     cy.get(AuthElements.successAccountMessage)
       .should('be.visible')
       .and('contain', MESSAGES.ACCOUNT_CREATED);
-  }
-
-  clickContinue() {
-    cy.get(AuthElements.continueButton).click();
+  };
+  verifyLoggedInAs(username) {
+    this.header.verifyLoggedInAs(username);
   }
 }

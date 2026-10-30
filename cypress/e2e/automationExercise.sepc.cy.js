@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 import { AuthPage } from '../support/pages/auth.page';
-import { newUser } from '../support/data/userData';
+import { newUser, staticUser } from '../support/data/userData';
 // import userData from '../fixtures/example.json'
 // import {
 //   getRandomNumber,
@@ -14,7 +14,7 @@ describe('Automation Exercise', () => {
 
   const authPage = new AuthPage(); //instantiate once
 
-  it('CT 01: Deve registrar um novo usuário com sucesso', () => {
+  it('CT 01: Register new user with success', () => {
     //Arrange
     authPage.accessAuthPage();
     authPage.fillInitialSignup(newUser.name, newUser.email);
@@ -26,7 +26,19 @@ describe('Automation Exercise', () => {
     //Assert
     authPage.verifyAccountCreated();
 
-    authPage.clickContinue();
+  });
+
+  it('CT 02: Login User with correct email and password', () => {
+    //Arrange
+    authPage.accessAuthPage();
+    authPage.fillLogin(staticUser.email, staticUser.password);
+
+    //Act
+    authPage.submitLogin();
+
+    //Assert
+    authPage.verifyLoggedInAs(staticUser.name);
+
   });
 
 })
