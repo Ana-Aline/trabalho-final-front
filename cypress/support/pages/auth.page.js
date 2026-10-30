@@ -68,4 +68,9 @@ export class AuthPage {
       .should('be.visible')
       .and('contain', MESSAGES.INCORRECT_CREDENTIALS);
   }
+  verifyEmailAlreadyExistsError() {
+    cy.get(AuthElements.signupErrorText)
+      .should('be.visible')
+      .and('contain', MESSAGES.EMAIL_ALREADY_EXIST);
+  }
 }

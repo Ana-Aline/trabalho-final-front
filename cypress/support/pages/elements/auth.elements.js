@@ -29,5 +29,6 @@ export const AuthElements = {
   continueButton: '[data-qa="continue-button"]',
 
   loginErrorText: '.login-form > form > p',
+  signupErrorText: '.signup-form > form > p',
 
 };

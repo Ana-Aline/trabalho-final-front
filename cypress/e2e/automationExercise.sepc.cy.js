@@ -63,6 +63,15 @@ describe('Automation Exercise', () => {
     //Assert
     authPage.verifyLoggedOut();
   });
+  it.only('CT 05: Register new user with existing email', () => {
+    //Arrange
+    authPage.accessAuthPage();
 
+    //Arrange + Act
+    authPage.fillInitialSignup(staticUser.name, staticUser.email);
+
+    //Assert
+    authPage.verifyEmailAlreadyExistsError();
+  });
 
 })
