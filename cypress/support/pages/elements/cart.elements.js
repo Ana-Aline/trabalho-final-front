@@ -1,0 +1,12 @@
+export const CartElements = {
+    proceedToCheckoutButton: '.btn.btn-default.check_out',
+    
+    // Payment
+    nameOnCardInput: 'input[data-qa="name-on-card"]',
+    cardNumberInput: 'input[data-qa="card-number"]',
+    cvcInput: 'input[data-qa="cvc"]',
+    expiryMonthInput: 'input[data-qa="expiry-month"]',
+    expiryYearInput: 'input[data-qa="expiry-year"]',
+    payButton: 'button[data-qa="pay-button"]',
+    successOrderMessage: '#success_message',
+};

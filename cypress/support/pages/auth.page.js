@@ -48,6 +48,9 @@ export class AuthPage {
   submitAccountCreation() {
     cy.get(AuthElements.createAccountButton).click();
   };
+  clickContinueAfterCreation() {
+    cy.get(AuthElements.continueButton).click();
+  }
   logout() {
     this.header.clickLogout();
   }

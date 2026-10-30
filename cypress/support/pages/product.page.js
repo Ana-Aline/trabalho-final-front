@@ -9,9 +9,15 @@ export class ProductsPage {
     clickFirstProductView() {
         cy.get(ProductElements.firstProductViewButton).first().click();
     }
+    addProductToCart() {
+        cy.get(ProductElements.addToCartButton).click();
+    }
     searchProduct(productName) {
         cy.get(ProductElements.searchInput).type(productName);
         cy.get(ProductElements.searchButton).click();
+    }
+    clickCartModal() {
+        cy.get(ProductElements.cartModalLink).click();
     }
 
     verifyProductDetailsAreVisible() {

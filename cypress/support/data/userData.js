@@ -19,4 +19,11 @@ const staticUser = {
 const searchData = {
     validProduct: "Top"
 };
-export { newUser, staticUser, searchData };
+const paymentData = {
+    nameOnCard: 'Ana QA',
+    cardNumber: '1234567890123456',
+    cvc: '123',
+    expirationMonth: '12',
+    expirationYear: '2030'
+};
+export { newUser, staticUser, searchData, paymentData };

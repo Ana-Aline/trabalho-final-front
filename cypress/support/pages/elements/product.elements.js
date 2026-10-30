@@ -14,4 +14,8 @@ export const ProductElements = {
   searchInput: '#search_product',
   searchButton: '#submit_search',
   searchedProductsTitle: '.title.text-center',
+  //to cart
+  addToCartButton: 'button.cart',
+  cartModalLink: '#cartModal a[href="/view_cart"]',
+
 };

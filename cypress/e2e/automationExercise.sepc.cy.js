@@ -2,13 +2,15 @@
 import { AuthPage } from '../support/pages/auth.page';
 import { ProductsPage } from '../support/pages/product.page';
 import { HomePage } from '../support/pages/home.page';
-import { newUser, staticUser, searchData } from '../support/data/userData';
+import { CartPage } from '../support/pages/cart.page';
+import { newUser, staticUser, searchData, paymentData } from '../support/data/userData';
 
 describe('Automation Exercise', () => {
 
   const authPage = new AuthPage(); //instantiate once
   const productsPage = new ProductsPage();
   const homePage = new HomePage();
+  const cartPage = new CartPage();
 
   it('CT 01: Register new user with success', () => {
     //Arrange
@@ -89,7 +91,7 @@ describe('Automation Exercise', () => {
     //Assert
     productsPage.verifySearchedProductsVisible();
   });
-  it.only('CT 10: Verify Subscription in home page', () => {
+  it('CT 10: Verify Subscription in home page', () => {
     //Arrange
     homePage.accessProductsPage();
     homePage.scrollToFooter();
@@ -99,5 +101,27 @@ describe('Automation Exercise', () => {
     
     //Assert
     homePage.verifySuccessSubscription();
+  });
+  it('CT 15: Place Order - Register before Checkout', () => {
+    //Arrange
+    authPage.accessAuthPage(); 
+    authPage.fillInitialSignup(newUser.name, newUser.email);
+    authPage.fillAccountDetails();
+    authPage.submitAccountCreation();
+    authPage.verifyAccountCreated();
+    authPage.clickContinueAfterCreation();
+    productsPage.accessProductsPage();
+
+    //ACT
+    productsPage.clickFirstProductView();
+    productsPage.addProductToCart();
+    productsPage.clickCartModal(); 
+    cartPage.proceedToCheckout();
+    cartPage.fillPaymentDetails(paymentData);
+    
+    //ASEERTION
+    cartPage.verifyOrderSuccess();
+
+    authPage.header.clickDeleteAccount();
   });
 });
