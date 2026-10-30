@@ -3,5 +3,6 @@ export const MESSAGES = {
   ACCOUNT_CREATED: 'Account Created!',
   ACCOUNT_DELETED: 'Account Deleted!',
   INCORRECT_CREDENTIALS: 'Your email or password is incorrect!',
-  EMAIL_ALREADY_EXIST: 'Email Address already exist!'
+  EMAIL_ALREADY_EXIST: 'Email Address already exist!',
+  SUCCESS_SUBSCRIPTION: 'You have been successfully subscribed!',
 };

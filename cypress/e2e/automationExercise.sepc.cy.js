@@ -1,12 +1,14 @@
 /// <reference types="cypress" />
 import { AuthPage } from '../support/pages/auth.page';
 import { ProductsPage } from '../support/pages/product.page';
+import { HomePage } from '../support/pages/home.page';
 import { newUser, staticUser, searchData } from '../support/data/userData';
 
 describe('Automation Exercise', () => {
 
   const authPage = new AuthPage(); //instantiate once
   const productsPage = new ProductsPage();
+  const homePage = new HomePage();
 
   it('CT 01: Register new user with success', () => {
     //Arrange
@@ -77,7 +79,7 @@ describe('Automation Exercise', () => {
     //Assert
     productsPage.verifyProductDetailsAreVisible();
   });
-  it.only('CT 09: Search Product', () => {
+  it('CT 09: Search Product', () => {
     //Arrange
     productsPage.accessProductsPage();
 
@@ -86,5 +88,16 @@ describe('Automation Exercise', () => {
     
     //Assert
     productsPage.verifySearchedProductsVisible();
+  });
+  it.only('CT 10: Verify Subscription in home page', () => {
+    //Arrange
+    homePage.accessProductsPage();
+    homePage.scrollToFooter();
+
+    //Act
+    homePage.subscribeEmail(newUser.email);
+    
+    //Assert
+    homePage.verifySuccessSubscription();
   });
 });
