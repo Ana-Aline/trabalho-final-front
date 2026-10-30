@@ -25,7 +25,6 @@ describe('Automation Exercise', () => {
 
     //Assert
     authPage.verifyAccountCreated();
-
   });
 
   it('CT 02: Login User with correct email and password', () => {
@@ -38,10 +37,9 @@ describe('Automation Exercise', () => {
 
     //Assert
     authPage.verifyLoggedInAs(staticUser.name);
-
   });
 
-  it.only('CT 03: Error when login User with incorrect email and password', () => {
+  it('CT 03: Error when login User with incorrect email and password', () => {
     //Arrange
     authPage.accessAuthPage();
     authPage.fillLogin(`qa_${Date.now()}@test.com`, 'senhaErrada123');
@@ -51,7 +49,19 @@ describe('Automation Exercise', () => {
 
     //Assert
     authPage.verifyLoginError();
+  });
 
+  it('CT 04: Logout user', () => {
+    //Arrange
+    authPage.accessAuthPage();
+    authPage.fillLogin(staticUser.email, staticUser.password);
+    authPage.submitLogin();
+
+    //Act
+    authPage.logout();
+
+    //Assert
+    authPage.verifyLoggedOut();
   });
 
 

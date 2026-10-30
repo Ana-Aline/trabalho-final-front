@@ -48,6 +48,9 @@ export class AuthPage {
   submitAccountCreation() {
     cy.get(AuthElements.createAccountButton).click();
   };
+  logout() {
+    this.header.clickLogout();
+  }
 
   verifyAccountCreated() {
     cy.get(AuthElements.successAccountMessage)
@@ -56,6 +59,9 @@ export class AuthPage {
   };
   verifyLoggedInAs(username) {
     this.header.verifyLoggedInAs(username);
+  }
+  verifyLoggedOut(){
+    cy.url().should('include', ROUTES.LOGIN);
   }
   verifyLoginError() {
     cy.get(AuthElements.loginErrorText)

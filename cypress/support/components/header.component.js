@@ -2,10 +2,6 @@
 export class HeaderComponent {
   container = '.shop-menu > .nav';
 
-  get loggedInUserText() {
-    return cy.contains('Logged in as');
-  }
-
   get deleteAccountButton() {
     return cy.get(`${this.container} a[href="/delete_account"]`);
   }
@@ -25,10 +21,10 @@ export class HeaderComponent {
   }
 
   clickDeleteAccount() {
-    this.deleteAccountButton.click();
+    this.deleteAccountButton.should('be.visible').click();
   }
 
   clickLogout() {
-    this.logoutButton.click();
+    this.logoutButton.should('be.visible').click();
   }
 }
