@@ -1,4 +1,3 @@
-import { newUser } from '../data/userData';
 import { AuthElements } from './elements/auth.elements';
 import { ROUTES } from '../data/routes';
 import { MESSAGES } from '../data/messages';
@@ -19,9 +18,11 @@ export class AuthPage {
   fillInitialSignup(name, email) {
     cy.get(AuthElements.nameInput).type(name);
     cy.get(AuthElements.emailInput).type(email);
-    cy.get(AuthElements.signupButton).click();
+    cy.get(AuthElements.signupButton)
+      .should('be.visible')
+      .click();
   };
-  fillAccountDetails() {
+  fillAccountDetails(newUser) {
     cy.get(AuthElements.mrsSelect).click();
     cy.get(AuthElements.passwordInput).type(newUser.password);
     cy.get(AuthElements.dayBirthSelect).select('15');
@@ -43,13 +44,19 @@ export class AuthPage {
   };
 
   submitLogin() {
-    cy.get(AuthElements.loginButton).click();
+    cy.get(AuthElements.loginButton)
+      .should('be.visible')
+      .click();
   };
   submitAccountCreation() {
-    cy.get(AuthElements.createAccountButton).click();
+    cy.get(AuthElements.createAccountButton)
+      .should('be.visible')
+      .click();
   };
   clickContinueAfterCreation() {
-    cy.get(AuthElements.continueButton).click();
+    cy.get(AuthElements.continueButton)
+      .should('be.visible')
+      .click();
   }
   logout() {
     this.header.clickLogout();

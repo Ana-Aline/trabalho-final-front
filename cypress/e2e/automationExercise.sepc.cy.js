@@ -3,7 +3,7 @@ import { AuthPage } from '../support/pages/auth.page';
 import { ProductsPage } from '../support/pages/product.page';
 import { HomePage } from '../support/pages/home.page';
 import { CartPage } from '../support/pages/cart.page';
-import { newUser, staticUser, searchData, paymentData } from '../support/data/userData';
+import { getNewUser, staticUser, searchData, paymentData } from '../support/data/userData';
 
 describe('Automation Exercise', () => {
 
@@ -14,9 +14,10 @@ describe('Automation Exercise', () => {
 
   it('CT 01: Register new user with success', () => {
     //Arrange
+    const newUser = getNewUser();
     authPage.accessAuthPage();
     authPage.fillInitialSignup(newUser.name, newUser.email);
-    authPage.fillAccountDetails();
+    authPage.fillAccountDetails(newUser);
 
     //Act
     authPage.submitAccountCreation();
@@ -93,6 +94,7 @@ describe('Automation Exercise', () => {
   });
   it('CT 10: Verify Subscription in home page', () => {
     //Arrange
+    const newUser = getNewUser();
     homePage.accessProductsPage();
     homePage.scrollToFooter();
 
@@ -104,9 +106,11 @@ describe('Automation Exercise', () => {
   });
   it('CT 15: Place Order - Register before Checkout', () => {
     //Arrange
+    const newUser = getNewUser();
+
     authPage.accessAuthPage(); 
     authPage.fillInitialSignup(newUser.name, newUser.email);
-    authPage.fillAccountDetails();
+    authPage.fillAccountDetails(newUser);
     authPage.submitAccountCreation();
     authPage.verifyAccountCreated();
     authPage.clickContinueAfterCreation();
@@ -117,11 +121,35 @@ describe('Automation Exercise', () => {
     productsPage.addProductToCart();
     productsPage.clickCartModal(); 
     cartPage.proceedToCheckout();
+    cartPage.addCommentAndPlaceOrder('Comentário de teste automatizado para o pedido.');
     cartPage.fillPaymentDetails(paymentData);
+    cartPage.submitePaymentDetails();
     
     //ASEERTION
     cartPage.verifyOrderSuccess();
 
     authPage.header.clickDeleteAccount();
+  });
+  it('CT 16: Place Order - Login before Checkout', () => {
+    //Arrange
+    authPage.accessAuthPage(); 
+    authPage.fillLogin(staticUser.email, staticUser.password);
+    authPage.submitLogin();
+    authPage.verifyLoggedInAs(staticUser.name);
+
+
+    productsPage.accessProductsPage();
+
+    //ACT
+    productsPage.clickFirstProductView();
+    productsPage.addProductToCart();
+    productsPage.clickCartModal(); 
+    cartPage.proceedToCheckout();
+    cartPage.addCommentAndPlaceOrder('Comentário de teste automatizado para o pedido.');
+    cartPage.fillPaymentDetails(paymentData);
+    cartPage.submitePaymentDetails();
+    
+    //ASEERTION
+    cartPage.verifyOrderSuccess();
   });
 });

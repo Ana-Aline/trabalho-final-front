@@ -29,7 +29,9 @@ export class FooterComponent {
 
   subscribeEmail(email) {
     this.emailInput.type(email);
-    this.subscribeButton.click();
+    this.subscribeButton
+      .should('be.visible')
+      .click();
   }
 
   verifySuccessSubscription(successMessageText) {

@@ -1,4 +1,7 @@
 export const CartElements = {
+    commentTextArea: 'textarea[name="message"]',
+    placeOrderButton: 'a:contains("Place Order")',
+
     proceedToCheckoutButton: '.btn.btn-default.check_out',
     
     // Payment

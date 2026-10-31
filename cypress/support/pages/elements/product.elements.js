@@ -17,5 +17,4 @@ export const ProductElements = {
   //to cart
   addToCartButton: 'button.cart',
   cartModalLink: '#cartModal a[href="/view_cart"]',
-
 };

@@ -4,7 +4,10 @@ import { MESSAGES } from '../data/messages';
 
 export class CartPage {
     proceedToCheckout() {
-        cy.get(CartElements.proceedToCheckoutButton).click();
+        cy.get(CartElements.proceedToCheckoutButton)
+          .scrollIntoView()
+          .should('be.visible')
+          .click();
     }
 
     fillPaymentDetails(cardData) {
@@ -13,13 +16,21 @@ export class CartPage {
         cy.get(CartElements.cvcInput).type(cardData.cvc);
         cy.get(CartElements.expiryMonthInput).type(cardData.expirationMonth);
         cy.get(CartElements.expiryYearInput).type(cardData.expirationYear);
-        cy.get(CartElements.payButton).click();
     }
 
     submitePaymentDetails() {
-        cy.get(CartElements.payButton).click();
+        cy.get(CartElements.payButton)
+          .should('be.visible')
+          .click();
     }
-
+    addCommentAndPlaceOrder(comment) {
+        cy.get(CartElements.commentTextArea).type(comment);
+        cy.get(CartElements.placeOrderButton)
+            .scrollIntoView()
+            .should('be.visible')
+            .click();
+    }
+    
     verifyOrderSuccess() {
         cy.get(CartElements.successOrderMessage)
             .should('be.visible')

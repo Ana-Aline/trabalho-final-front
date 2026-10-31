@@ -1,4 +1,4 @@
-const newUser = {
+const getNewUser = () => ({
   name: "Ana Rocha",
   email: `qa_${Date.now()}@test.com`,
   password: "12345",
@@ -10,7 +10,7 @@ const newUser = {
   city: "Goiânia",
   zipcode: "74000-000",
   mobileNumber: "62999999999"
-}
+});
 const staticUser = {
   email: "testedaana@teste.com",
   password: "12345",
@@ -26,4 +26,4 @@ const paymentData = {
     expirationMonth: '12',
     expirationYear: '2030'
 };
-export { newUser, staticUser, searchData, paymentData };
+export { getNewUser, staticUser, searchData, paymentData };
