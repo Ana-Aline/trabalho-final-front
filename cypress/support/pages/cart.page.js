@@ -32,8 +32,7 @@ export class CartPage {
     }
     
     verifyOrderSuccess() {
-        cy.get(CartElements.successOrderMessage)
-            .should('be.visible')
-            .and('contain', MESSAGES.ORDER_SUCCESS);
+        cy.url().should('include', 'payment_done');
+        cy.contains('b', 'Order Placed!');
     }
 }
