@@ -71,6 +71,16 @@ Após rodar os testes gerando os resultados do Allure, compile e abra o dashboar
 
 npx allure serve allure-results
 
+### Como visualizar o artefato do relatório na sua máquina:
+Como os relatórios do Allure utilizam requisições estáticas em JavaScript, abri-los diretamente pelo explorador de ficheiros do sistema pode gerar bloqueios de segurança do navegador (CORS). Para contornar isso de forma leve e sem dependência de Java, utilize um servidor local via Node.js:
+
+1. Descarregue e descompacte o artefato `allure-report.zip` gerado na aba **Actions** do repositório.
+2. Abra o terminal na pasta extraída do relatório.
+3. Execute o comando abaixo para iniciar o servidor web e abrir o painel automaticamente:
+   ```bash
+   npx http-server . -o
+   ```
+
 ## Pipeline de CI/CD (GitHub Actions)
 
 O projeto conta com automação contínua configurada no arquivo pipeline.yml. A cada push ou pull_request para as branchs principais:
