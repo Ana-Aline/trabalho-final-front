@@ -2,16 +2,13 @@ name: Web E2E Tests
 
 on: 
   pull_request:
-    branches: [ main] 
+    branches: [ main ] 
   workflow_dispatch:
-
- 
 
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
-    steps: 
-      
+    steps:      
       - uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -28,9 +25,7 @@ jobs:
         continue-on-error: true
 
       - name: Install Allure CLI
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y allure
+        run: npm install -g allure-commandline
 
       - name: Generate Allure Report
         run: allure generate allure-results --clean -o allure-report
